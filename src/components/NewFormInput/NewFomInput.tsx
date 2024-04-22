@@ -1,18 +1,31 @@
+import { Button, Flex, Input, Typography } from "antd";
+import { SetStateAction } from "react";
+
 interface NewTodoFormProps {
   text: string;
   handleInput: (str: string) => void;
   handelSubmit: () => void;
-
 }
-const NewFomInput: React.FC<NewTodoFormProps> = ({ text, handleInput, handelSubmit }) => {
+const NewFomInput = ({ text, handleInput, handelSubmit }: NewTodoFormProps) => {
+  const length = text.trim().length;
   return (
-    <label className="input-wrapper">
-      <input
-        placeholder="Add new todo" 
-        value={text} className="set-width" onChange={(e) => handleInput(e.target.value)} />
-      <button onClick={handelSubmit}>Add Todo</button>
-    </label>
-  )
-}
+    <Flex>
+      <Input
+        autoCapitalize="false"
+        value={text}
+        onChange={(e) => handleInput(e.target.value)}
+        placeholder="Add Todo"
+        id="NewToDo"
+      />
+      <Button
+        onClick={handelSubmit}
+        type="primary"
+        disabled={length !== 0 ? false : true}
+      >
+        Add Task
+      </Button>
+    </Flex>
+  );
+};
 
-export default NewFomInput
+export default NewFomInput;
