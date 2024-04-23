@@ -7,7 +7,12 @@ const TodoList: React.FC = () => {
   const todos = useAppSelector((state) => state.todos.list);
 
   return (
-    <Flex vertical justify="center" className={styles.FlexList}>
+    <Flex
+      vertical
+      justify="center"
+      data-testid="todos"
+      className={styles.FlexList}
+    >
       {todos.map((todo) => (
         <TodoItem key={todo.id} {...todo} />
       ))}

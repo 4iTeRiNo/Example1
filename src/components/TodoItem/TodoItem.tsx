@@ -56,13 +56,20 @@ const TodoItem = ({
   };
 
   return (
-    <Flex align="flex-start" justify="center" className={styles.listTodo}>
+    <Flex
+      data-testid="task"
+      align="flex-start"
+      justify="center"
+      className={styles.listTodo}
+    >
       <Checkbox
+        data-testid="checkbox"
         checked={completed}
         onChange={() => dispatch(toggleStatus(id))}
       />
       {isEdit ? (
-        <Input
+        <Input  
+        data-testid="input-title"
           autoCapitalize="false"
           onChange={(e) => editTask(e)}
           value={text}
@@ -73,6 +80,7 @@ const TodoItem = ({
           onClick={showDrawer}
           data-value={text}
           key={id}
+          data-testid="text-title"
         >
           {text}
         </Text>
@@ -92,6 +100,7 @@ const TodoItem = ({
       )}
       <Flex gap="small">
         <Button
+          data-testid={isEdit ? "done" : "edit"}
           type="default"
           onClick={() => {
             setIsEdit(!isEdit);
@@ -102,7 +111,11 @@ const TodoItem = ({
         >
           {isEdit ? "done" : "edit"}
         </Button>
-        <Button type="primary" onClick={() => dispatch(deleteTodos(id))}>
+        <Button
+          data-testid="delete"
+          type="primary"
+          onClick={() => dispatch(deleteTodos(id))}
+        >
           delete
         </Button>
       </Flex>
